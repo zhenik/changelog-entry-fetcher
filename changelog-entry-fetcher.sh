@@ -1,15 +1,15 @@
 #!/bin/bash
-# example `./changelog-entry-fetcher.sh test/test2.md changelog-entry.txt`
+# example `./changelog-entry-fetcher.sh test/test2.md >> changelog-entry.txt`
 
 # validate amount of args
-if [[ $# -ne 2 ]]; then
-    >&2 echo "Illegal number of parameters: args[source_file_path, target_path]"
+if [[ $# -ne 1 ]]; then
+    >&2 echo "Illegal number of parameters: args[source_file_path]"
     exit 1
 fi
 
 # args
 source_file_path=$1
-output_file_path=$2
+#output_file_path=$2
 
 # internal
 h1amount=0
@@ -31,8 +31,10 @@ do
     fi
 
     if [[ ("$h2amount" -lt 2) && ("$h1amount" -eq 1) ]]; then
-        echo "$line" # debug to output
-        echo "$line" >> "$output_file_path"
+        if [ "$line" != "" ]; then
+          echo "$line" # debug to output
+#        echo "$line" >> "$output_file_path" # not necessary
+        fi
     fi
 
     if [[ $line == "# "* ]]; then
