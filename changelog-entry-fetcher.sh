@@ -1,5 +1,5 @@
 #!/bin/bash
-# example `./test.sh test/test2.md lol.txt`
+# example `./changelog-entry-fetcher.sh test/test2.md changelog-entry.txt`
 
 # validate amount of args
 if [[ $# -ne 2 ]]; then
